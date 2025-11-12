@@ -3,5 +3,8 @@ test.sh
 .luarc.json
 nvim
 
+# Intelectual property
+lua/custom/snippets/vscode/
+
 spell/
 lazy-lock.json
