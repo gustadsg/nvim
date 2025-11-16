@@ -5,6 +5,7 @@ nvim
 
 # Intelectual property
 lua/custom/snippets/vscode/
+.gitmodules
 
 spell/
 lazy-lock.json

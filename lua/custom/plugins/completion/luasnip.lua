@@ -9,13 +9,16 @@ return {
       require('luasnip.loaders.from_vscode').lazy_load()
 
       -- Load custom VSCode-style snippets
-      require('luasnip.loaders.from_vscode').lazy_load {
-        paths = vim.fn.stdpath 'config' .. '/lua/custom/snippets/vscode',
+      require('luasnip.loaders.from_vscode').load {
+        paths = { vim.fn.stdpath 'config' .. '/lua/custom/snippets/vscode' },
+        filetypes = {
+          cf = { 'cfml' },
+        },
       }
 
       -- Load custom Lua snippets
       require('luasnip.loaders.from_lua').load {
-        paths = vim.fn.stdpath 'config' .. '/lua/custom/snippets/',
+        paths = { vim.fn.stdpath 'config' .. '/lua/custom/snippets/' },
       }
 
       luasnip.config.set_config {
