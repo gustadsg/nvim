@@ -9,7 +9,25 @@ return {
   },
   config = function()
     local capabilities = require('blink.cmp').get_lsp_capabilities()
+
     local servers = {
+      tsserver = {
+        -- Configurações TypeScript
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+          local map = function(keys, func, desc)
+            vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+          end
+
+          map('grn', vim.lsp.buf.rename, 'LSP Rename')
+          map('grr', vim.lsp.buf.references, 'LSP References')
+          map('grd', vim.lsp.buf.definition, 'LSP Definition')
+        end,
+        settings = {
+          -- Habilita sugestões automáticas de imports
+          completions = { completeFunctionCalls = true },
+        },
+      },
       lua_ls = {
         settings = {
           Lua = {
@@ -19,7 +37,10 @@ return {
       },
     }
 
-    require('mason-tool-installer').setup { ensure_installed = vim.tbl_keys(servers) }
+    require('mason-tool-installer').setup {
+      ensure_installed = vim.tbl_keys(servers),
+    }
+
     require('mason-lspconfig').setup {
       handlers = {
         function(server_name)
