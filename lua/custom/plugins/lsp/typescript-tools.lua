@@ -3,13 +3,13 @@ return {
   dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
   opts = {
     settings = {
-      -- Desabilita diagnósticos do tsserver (usa eslint quando disponível)
+      -- Disables tssserver's diagnosis
       diagnosticMode = 'off',
-      -- Habilita sugestões automáticas de imports
+      -- Enables auto suggests and imports
       completions = {
         completeFunctionCalls = true,
       },
-      -- Habilita refatorações do TypeScript
+      -- Enables TypeScript refactorings
       enableLineBreakOnTypedRangeEnd = true,
       inlayHints = {
         enabled = true,

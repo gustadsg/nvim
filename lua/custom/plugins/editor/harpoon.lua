@@ -13,57 +13,36 @@ return {
       local nvim_tree = require 'nvim-tree.api'
 
       ---------------------------------------------------------------------------
-      -- ⚙️ Configuração principal
+      -- ⚙️ Main config
       ---------------------------------------------------------------------------
       harpoon:setup {
         settings = {
-          save_on_toggle = true, -- salva automaticamente ao abrir/fechar menu
-          sync_on_ui_close = true, -- sincroniza automaticamente
+          save_on_toggle = true, -- saves atumatically on toggle menu
+          sync_on_ui_close = true, -- syncs automatically
         },
       }
 
-      -- Carrega a extensão do Telescope
+      -- Loads Telescope's extension
       telescope.load_extension 'harpoon'
 
-      ---------------------------------------------------------------------------
-      -- 🧭 Função auxiliar: abrir ponteiro no NvimTree
-      ---------------------------------------------------------------------------
-      local function open_in_nvim_tree(path)
-        if vim.fn.isdirectory(path) == 1 then
-          nvim_tree.tree.open { path = path }
-        else
-          nvim_tree.tree.find_file { open = true, path = path }
-        end
-      end
-
-      ---------------------------------------------------------------------------
-      -- 🔑 Mapeamentos de teclas
+      -------------------------------------      ---------------------------------------------------------------------------
+      -- 🔑 Keymap
       ---------------------------------------------------------------------------
       local keymap = vim.keymap.set
       local opts = { noremap = true, silent = true }
 
-      -- Adicionar arquivo/pasta atual como ponteiro
+      -- Add current file as pointer
       keymap('n', '<leader>a', function()
         harpoon:list():add()
         vim.notify('📌 Pointer added to Harpoon!', vim.log.levels.INFO)
       end, vim.tbl_extend('force', opts, { desc = 'Add pointer toHarpoon' }))
 
-      -- Abrir lista de ponteiros com Telescope
+      -- Open pointer's list with Telescope
       keymap('n', '<leader>h', function()
         telescope.extensions.harpoon.marks()
       end, vim.tbl_extend('force', opts, { desc = 'Open Pointers (Telescope)' }))
 
-      -- Abrir ponteiro atual no NvimTree
-      keymap('n', '<leader>o', function()
-        local mark = harpoon:list():get_current()
-        if mark then
-          open_in_nvim_tree(mark.value)
-        else
-          vim.notify('⚠️ No pointer selected.', vim.log.levels.WARN)
-        end
-      end, vim.tbl_extend('force', opts, { desc = 'Open pointer in NvimTree' }))
-
-      -- Acesso rápido aos 4 primeiros ponteiros
+      -- Quick access to 3 first pointers
       keymap('n', '<leader>1', function()
         harpoon:list():select(1)
       end, opts)
@@ -73,17 +52,14 @@ return {
       keymap('n', '<leader>3', function()
         harpoon:list():select(3)
       end, opts)
-      keymap('n', '<leader>4', function()
-        harpoon:list():select(4)
-      end, opts)
 
       ---------------------------------------------------------------------------
-      -- 🚀 Abre automaticamente o menu de ponteiros ao iniciar o Neovim
-      -- (somente se o Neovim for aberto sem arquivo específico)
+      -- 🚀 Automatically opens pointers menu on Neovim start.
+      -- (only if open on no specific file)
       ---------------------------------------------------------------------------
       vim.api.nvim_create_autocmd('VimEnter', {
         callback = function()
-          -- só abre se não houver arquivo carregado (ex: nvim sem argumentos)
+          -- only if no specific file loaded
           if vim.fn.argc() == 0 then
             vim.schedule(function()
               telescope.extensions.harpoon.marks()
