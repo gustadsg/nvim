@@ -5,15 +5,15 @@ return {
     config = function()
       local luasnip = require 'luasnip'
 
-      -- Loads snippets from friendly-snippets
+      -- Load snippets from friendly-snippets
       require('luasnip.loaders.from_vscode').lazy_load()
 
-      -- Loads custom snippets
+      -- Load custom VSCode-style snippets
       require('luasnip.loaders.from_vscode').lazy_load {
         paths = vim.fn.stdpath 'config' .. '/lua/custom/snippets/vscode',
       }
 
-      -- Loads custom Lua snippets
+      -- Load custom Lua snippets
       require('luasnip.loaders.from_lua').load {
         paths = vim.fn.stdpath 'config' .. '/lua/custom/snippets/',
       }

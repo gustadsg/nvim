@@ -39,5 +39,5 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Keybinds to make split resize faster
 vim.keymap.set('n', '<C-w>+', '5<C-w>+')
 vim.keymap.set('n', '<C-w>-', '5<C-w>-')
-vim.keymap.set('n', '<C-w><', '5<C-w><')
-vim.keymap.set('n', '<C-w>>', '5<C-w>>')
+vim.keymap.set('n', '<C-w><', '10<C-w><')
+vim.keymap.set('n', '<C-w>>', '10C-w>>')

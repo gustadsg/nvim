@@ -14,10 +14,10 @@ return {
         return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
       end
 
-      -- 🔹 Primeiro: mantém todos os atalhos padrão
+      -- 🔹 First: keeps default mappings
       api.config.mappings.default_on_attach(bufnr)
 
-      -- 🔹 Depois: sobrescreve só os que você quer customizar
+      -- 🔹 After: overrites only what I want
       vim.keymap.set('n', 'l', api.node.open.edit, opts 'Open')
       vim.keymap.set('n', '<CR>', api.node.open.edit, opts 'Open')
       vim.keymap.set('n', 'o', api.node.open.edit, opts 'Open')
