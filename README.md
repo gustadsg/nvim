@@ -2,6 +2,7 @@
 Esta configuração é baseada na configuração do repositório [knickstart.nvim](https://github.com/nvim-lua/kickstart.nvim). 
 
 ## Estrutura
+```plaintext
 .
 ├── doc
 └── lua
@@ -21,6 +22,7 @@ Esta configuração é baseada na configuração do repositório [knickstart.nvi
             ├── lua
             │   └── all
             └── vscode
+```
 
 - lua/custom: toda a configuração fica aqui dentro.
     - config: guarda arquivos de configuração do lazy e especificas do nvim.
