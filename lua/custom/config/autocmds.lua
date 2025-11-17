@@ -114,3 +114,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end,
 })
+
+-- Recognizes cf files as cfml
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'cf',
+  callback = function()
+    vim.bo.filetype = 'cfml'
+  end,
+})
