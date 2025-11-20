@@ -1,5 +1,5 @@
 # Nvim config
-Esta configuração é baseada na configuração do repositório [knickstart.nvim](https://github.com/nvim-lua/kickstart.nvim). 
+Esta configuração é um fork repositório [knickstart.nvim](https://github.com/nvim-lua/kickstart.nvim). 
 
 ## Estrutura
 ```plaintext
